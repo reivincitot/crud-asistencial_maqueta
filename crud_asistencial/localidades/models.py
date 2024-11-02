@@ -1,7 +1,7 @@
 from django.db import models
 
 
-# Create your models here.
+
 class Pais(models.Model):
     """
     Modelo que representa un país.

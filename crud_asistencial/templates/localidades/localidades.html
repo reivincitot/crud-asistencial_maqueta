@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="container mt-4">
+  <form method="post" action="{% url 'ingresar_localidades' %}">
+    {% csrf_token %}
+
+    <!-- País -->
+    <section class="mb-4">
+      <label for="SeleccionPais" class="form-label">País</label>
+      <select id="SeleccionPais" class="form-control" name="pais" onchange="actualizarRegion();">
+        <option value="">Seleccione un País</option>
+        {% for pais in paises %}
+        <option value="{{ pais.id }}">{{ pais.nombre }}</option>
+        {% endfor %}
+      </select>
+      <p>Código Telefónico del País: <span id="codigoPaisInformativo"></span></p>
+      <input type="text" id="nuevoPais" name="nuevoPais" class="form-control mt-2" placeholder="O ingrese un nuevo País"
+        onblur="verificarDuplicado('pais', this.value);">
+      <input type="text" id="nuevoCodigoPais" name="nuevoCodigoPais" class="form-control mt-2"
+        placeholder="Ingrese un nuevo Código Telefónico del País"
+        onblur="verificarDuplicado('nuevoCodigoPais', this.value);">
+    </section>
+
+    <!-- Región -->
+    <section class="mb-4">
+      <label for="SeleccionRegion" class="form-label">Región</label>
+      <select id="SeleccionRegion" name="region" class="form-control" onchange="actualizarProvincias();" disabled>
+        <option value="">Seleccione una Región</option>
+      </select>
+      <p>Código Telefónico de la Región: <span id="codigoRegionInformativo"></span></p>
+      <input type="text" id="nuevaRegion" name="nuevaRegion" class="form-control mt-2"
+        placeholder="O ingrese una nueva Región" onblur="verificarDuplicado('region', this.value);" disabled>
+      <input type="text" id="nuevoCodigoRegion" name="nuevoCodigoRegion" class="form-control mt-2"
+        placeholder="Ingrese un nuevo Código Telefónico Regional"
+        onblur="verificarDuplicado('nuevoCodigoRegion', this.value);" disabled>
+    </section>
+
+    <!-- Provincia -->
+    <section class="mb-4">
+      <label for="SeleccionProvincia" class="form-label">Provincia</label>
+      <select id="SeleccionProvincia" name="provincia" class="form-control">
+        <option value="">Seleccione una Provincia</option>
+      </select>
+      <input type="text" id="nuevaProvincia" name="nuevaProvincia" class="form-control mt-2"
+        placeholder="O ingrese una nueva Provincia" onblur="verificarDuplicado('provincia', this.value);" disabled>
+    </section>
+
+    <!-- Comuna -->
+    <section class="mb-4">
+      <label for="nuevaComuna" class="form-label">Comuna</label>
+      <input type="text" id="nuevaComuna" name="nuevaComuna" class="form-control mt-2" placeholder="Ingrese la Comuna"
+        onblur="verificarDuplicado('comuna', this.value);">
+    </section>
+
+    <!-- Ciudad -->
+    <section class="mb-4">
+      <label for="NuevaCiduad" class="form-label">Ciudad</label>
+      <input type="text" id="nuevaCiudad" name="nuevaCiduad" class="form-control mt-2" placeholder="Ingrese la Ciudad"
+        onblur="verificarDuplicado('ciudad', this.value);">
+    </section>
+    <section class="">
+      <button type="submit" class="btn btn-success">Guardar</button>
+      <button type="reset" class="btn btn-danger">Cancelar</button>
+      <a href="{% url 'inicio' %}" class="btn btn-primary">Volver al Inicio</a>
+    </section>
+  </form>
+</main>
+
+<script src="{% static 'js/formulario.js' %}"></script>
+{% endblock %}

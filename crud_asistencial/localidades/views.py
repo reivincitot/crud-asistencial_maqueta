@@ -1,46 +1,69 @@
-from django.shortcuts import render, get_object_or_404
+# views.py
+from django.shortcuts import render, redirect
+from .forms import LocalidadesForm
 from .models import Pais, Region, Provincia, Comuna, Ciudad
+from utils import formatear_texto
+from django.http import JsonResponse
 
-def lista_paises(request):
+def ingresar_localidades(request):
+    if request.method == "POST":
+        form = LocalidadesForm(request.POST)
+        if form.is_valid():
+            # Guardar nuevos datos solo si se proporcionaron
+            if form.cleaned_data["nuevoPais"]:
+                Pais.objects.create(
+                    nombre=form.cleaned_data["nuevoPais"],
+                    codigo=form.cleaned_data["nuevoCodigoPais"],
+                )
+            if form.cleaned_data["nuevaRegion"]:
+                Region.objects.create(
+                    nombre=form.cleaned_data["nuevaRegion"],
+                    codigo=form.cleaned_data["nuevoCodigoRegion"],
+                )
+            if form.cleaned_data["nuevaProvincia"]:
+                Provincia.objects.create(nombre=form.cleaned_data["nuevaProvincia"])
+            if form.cleaned_data["nuevaComuna"]:
+                Comuna.objects.create(nombre=form.cleaned_data["nuevaComuna"])
+            if form.cleaned_data["nuevaCiudad"]:
+                Ciudad.objects.create(nombre=form.cleaned_data["nuevaCiudad"])
+            return redirect("inicio")
+    else:
+        form = LocalidadesForm()
+
     paises = Pais.objects.all()
-    return render(request, 'ubicaciones/lista_paises.html', {'paises': paises})
+    regiones = Region.objects.all()
+    provincias = Provincia.objects.all()
+    comunas = Comuna.objects.all()
+    ciudades = Ciudad.objects.all()
 
-def detalle_pais(request, pais_id):
-    pais = get_object_or_404(Pais, id=pais_id)
-    return render(request, 'ubicaciones/detalle_pais.html', {'pais': pais})
+    context = {
+        "form": form,
+        "paises": paises,
+        "regiones": regiones,
+        "provincias": provincias,
+        "comunas": comunas,
+        "ciudades": ciudades,
+    }
+    return render(request, "localidades/localidades.html", context)
 
-def lista_regiones(request, pais_id):
-    pais = get_object_or_404(Pais, id=pais_id)
-    regiones = Region.objects.filter(pais=pais)
-    return render(request, 'ubicaciones/lista_regiones.html', {'pais': pais, 'regiones': regiones})
+def verificar_duplicado_ajax(request):
+    nombre = request.GET.get("nombre", "")
+    nombre_formateado = formatear_texto(nombre)
+    existe = Region.objects.filter(nombre__iexact=nombre_formateado).exists()
+    return JsonResponse({"existe": existe})
 
-def detalle_region(request, region_id):
-    region = get_object_or_404(Region, id=region_id)
-    return render(request, 'ubicaciones/detalle_region.html', {'region': region})
+# Vista para obtener regiones de un país específico
+def obtener_regiones(request):
+    pais_id = request.GET.get("pais_id")
+    regiones = Region.objects.filter(pais_id=pais_id).values("id", "nombre")
+    return JsonResponse(list(regiones), safe=False)
 
-def lista_provincias(request, region_id):
-    region = get_object_or_404(Region, id=region_id)
-    provincias = Provincia.objects.filter(region=region)
-    return render(request, 'ubicaciones/lista_provincias.html', {'region': region, 'provincias': provincias})
+# Vista para obtener provincias de una región específica
+def obtener_provincias(request):
+    region_id = request.GET.get("region_id")
+    provincias = Provincia.objects.filter(region_id=region_id).values("id", "nombre")
+    return JsonResponse(list(provincias), safe=False)
 
-def detalle_provincia(request, provincia_id):
-    provincia = get_object_or_404(Provincia, id=provincia_id)
-    return render(request, 'ubicaciones/detalle_provincia.html', {'provincia': provincia})
-
-def lista_comunas(request, provincia_id):
-    provincia = get_object_or_404(Provincia, id=provincia_id)
-    comunas = Comuna.objects.filter(provincia=provincia)
-    return render(request, 'ubicaciones/lista_comunas.html', {'provincia': provincia, 'comunas': comunas})
-
-def lista_ciudades(request, provincia_id):
-    provincia = get_object_or_404(Provincia, id=provincia_id)
-    ciudades = Ciudad.objects.filter(provincia=provincia)
-    return render(request, 'ubicaciones/lista_ciudades.html', {'provincia': provincia, 'ciudades': ciudades})
-
-def detalle_comuna(request, comuna_id):
-    comuna = get_object_or_404(Comuna, id=comuna_id)
-    return render(request, 'ubicaciones/detalle_comuna.html', {'comuna': comuna})
-
-def detalle_ciudad(request, ciudad_id):
-    ciudad = get_object_or_404(Ciudad, id=ciudad_id)
-    return render(request, 'ubicaciones/detalle_ciudad.html', {'ciudad': ciudad})
+# Vista de inicio
+def inicio(request):
+    return render(request, "home.html")
