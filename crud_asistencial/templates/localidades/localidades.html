@@ -1,72 +1,39 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
-<main class="container mt-4">
-  <form method="post" action="{% url 'ingresar_localidades' %}">
-    {% csrf_token %}
+<h1>Ingreso de Localidades</h1>
 
-    <!-- País -->
-    <section class="mb-4">
-      <label for="SeleccionPais" class="form-label">País</label>
-      <select id="SeleccionPais" class="form-control" name="pais" onchange="actualizarRegion();">
-        <option value="">Seleccione un País</option>
-        {% for pais in paises %}
-        <option value="{{ pais.id }}">{{ pais.nombre }}</option>
-        {% endfor %}
-      </select>
-      <p>Código Telefónico del País: <span id="codigoPaisInformativo"></span></p>
-      <input type="text" id="nuevoPais" name="nuevoPais" class="form-control mt-2" placeholder="O ingrese un nuevo País"
-        onblur="verificarDuplicado('pais', this.value);">
-      <input type="text" id="nuevoCodigoPais" name="nuevoCodigoPais" class="form-control mt-2"
-        placeholder="Ingrese un nuevo Código Telefónico del País"
-        onblur="verificarDuplicado('nuevoCodigoPais', this.value);">
-    </section>
+<form method="post" id="formulario-localidad">
+  {% csrf_token %}
+  <section>
+    <!-- Select para mostrar los países guardados -->
+    <select name="pais_select" id="pais_select">
+      <option value="" placeholder="Selecciona un País"></option>
+    </select>
+    <p>Código telefónico del pais: <span id="codigo-telefonico"></span></p>
+    <!-- Formulario para ingresar el país -->
+    <div>
+      <label for="nombre_pais">Nombre del País:</label>
+      <input type="text" id="nombre_pais" name="nombre_pais" placeholder="O ingrese un nuevo País" required>
+    </div>
 
-    <!-- Región -->
-    <section class="mb-4">
-      <label for="SeleccionRegion" class="form-label">Región</label>
-      <select id="SeleccionRegion" name="region" class="form-control" onchange="actualizarProvincias();" disabled>
-        <option value="">Seleccione una Región</option>
-      </select>
-      <p>Código Telefónico de la Región: <span id="codigoRegionInformativo"></span></p>
-      <input type="text" id="nuevaRegion" name="nuevaRegion" class="form-control mt-2"
-        placeholder="O ingrese una nueva Región" onblur="verificarDuplicado('region', this.value);" disabled>
-      <input type="text" id="nuevoCodigoRegion" name="nuevoCodigoRegion" class="form-control mt-2"
-        placeholder="Ingrese un nuevo Código Telefónico Regional"
-        onblur="verificarDuplicado('nuevoCodigoRegion', this.value);" disabled>
-    </section>
+    <div>
+      <label for="codigo_telefonico_pais">Código Telefónico: <span></span></label>
+      <input type="text" id="codigo_telefonico_pais" name="codigo_telefonico_pais"
+        placeholder="Ingrese el código telefónico del país" required>
+    </div>
+  </section>
+  <button onclick="guardarPais(event)">Guardar País</button>
+  <hr>
 
-    <!-- Provincia -->
-    <section class="mb-4">
-      <label for="SeleccionProvincia" class="form-label">Provincia</label>
-      <select id="SeleccionProvincia" name="provincia" class="form-control">
-        <option value="">Seleccione una Provincia</option>
-      </select>
-      <input type="text" id="nuevaProvincia" name="nuevaProvincia" class="form-control mt-2"
-        placeholder="O ingrese una nueva Provincia" onblur="verificarDuplicado('provincia', this.value);" disabled>
-    </section>
 
-    <!-- Comuna -->
-    <section class="mb-4">
-      <label for="nuevaComuna" class="form-label">Comuna</label>
-      <input type="text" id="nuevaComuna" name="nuevaComuna" class="form-control mt-2" placeholder="Ingrese la Comuna"
-        onblur="verificarDuplicado('comuna', this.value);">
-    </section>
 
-    <!-- Ciudad -->
-    <section class="mb-4">
-      <label for="NuevaCiduad" class="form-label">Ciudad</label>
-      <input type="text" id="nuevaCiudad" name="nuevaCiduad" class="form-control mt-2" placeholder="Ingrese la Ciudad"
-        onblur="verificarDuplicado('ciudad', this.value);">
-    </section>
-    <section class="">
-      <button type="submit" class="btn btn-success">Guardar</button>
-      <button type="reset" class="btn btn-danger">Cancelar</button>
-      <a href="{% url 'inicio' %}" class="btn btn-primary">Volver al Inicio</a>
-    </section>
-  </form>
-</main>
 
-<script src="{% static 'js/formulario.js' %}"></script>
+</form>
+<script>  var paisListUrl = "{% url 'pais-list' %}"; </script>
+<script src="{% static 'js/localidades/formatearFormulario.js' %}" defer></script>
+<script src="{% static 'js/localidades/gestionLocalidades.js' %}" defer></script>
+
+
 {% endblock %}

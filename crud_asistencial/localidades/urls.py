@@ -1,10 +1,13 @@
 from django.urls import path
-from . import views
+from .views import home, LocalidadesTemplateView, PaisListView #, RegionListView, ProvinciaListView, ComunaCreateView, CiudadCreateView 
 
 urlpatterns = [
-    path("ingresar-localidades/", views.ingresar_localidades, name="ingresar_localidades"),
-    path("verificar-duplicado/", views.verificar_duplicado_ajax, name="verificar_duplicado_ajax"),
-    path("obtener-regiones/", views.obtener_regiones, name="obtener_regiones"),
-    path("obtener-provincias/", views.obtener_provincias, name="obtener_provincias"),
-    path("", views.inicio, name="inicio"),  # Suponiendo que tienes una vista de inicio
+    path('', home, name='home'),
+    path('ingresar-localidades/', LocalidadesTemplateView.as_view(), name='ingresar_localidades'),
+    path('localidades/', PaisListView.as_view(), name='pais-list'),
+    # path('regiones/', RegionListView.as_view(), name='region-list'),
+    # path('provincias/', ProvinciaListView.as_view(), name='provincia-list'),
+    # path('comunas/', ComunaCreateView.as_view(), name='comuna-create'),
+    # path('ciudades/', CiudadCreateView.as_view(), name='ciudad-create'),
+    
 ]

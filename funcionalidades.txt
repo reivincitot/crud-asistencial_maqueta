@@ -1,0 +1,20 @@
+Lista Actualizada de Características de la App de Localidades
+Jerarquía y Selección de Datos: Selección de país, región, provincia, comuna y ciudad con despliegue automático de opciones relacionadas en cada nivel, para facilitar la navegación jerárquica.
+
+Autoselección de Datos Superiores: Cuando se selecciona un nivel (ej., región), se autoseleccionan y muestran los datos superiores correspondientes, incluyendo códigos telefónicos y nombres, sin enviar esta información al servidor.
+
+Inputs para Nuevos Datos: Para agregar nuevos registros, cada sección incluye inputs de texto que permiten ingresar datos (como una nueva región o comuna). Los inputs se bloquean según el contexto (p. ej., se desactiva el input de región cuando está seleccionada una comuna).
+
+Verificación de Duplicados en Tiempo Real: Validación en tiempo real para evitar duplicados en los datos ingresados y mantener la integridad en el formulario.
+
+Formato de Entrada: Los datos se guardan con formato de primera letra en mayúscula y sin acentos. Ejemplo: 'Arica y Parinacota' debe cumplir con este formato al mostrar la información en los selectores.
+
+Selectores y Inputs Bloqueados: Al seleccionar o ingresar información en niveles superiores, los campos correspondientes quedan bloqueados para evitar datos incoherentes o conflictos.
+
+Volver a Estado en Blanco: La selección en cada nivel puede volver al estado en blanco, permitiendo al usuario deseleccionar completamente si necesita reiniciar una parte del formulario.
+
+Botón de "Cancelar/Limpiar": Permite al usuario eliminar todos los datos del formulario sin guardarlos.
+
+Botón "Volver al Inicio": Facilita la navegación, permitiendo al usuario regresar a la página principal.
+
+Código Modular en utils.py: Verificaciones, formateo y otras funciones reutilizables se encuentran en el archivo utils.py, para mantener el código de la app limpio y favorecer la reutilización en otras aplicaciones.

@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Pais(models.Model):
     """
     Modelo que representa un país.
@@ -15,14 +14,10 @@ class Pais(models.Model):
     """
 
     nombre_pais = models.CharField(max_length=100, unique=True, db_index=True)
-    codigo_pais = models.CharField(max_length=3, unique=True)
-
-    def save(self, *args, **kwargs):
-        self.nombre_pais = self.nombre_pais.lower()
-        super().save(*args, **kwargs)
+    codigo_telefonico_pais = models.CharField(max_length=4, unique=True)
 
     def __str__(self) -> str:
-        return f"Pais:{self.nombre_pais}, Código País: {self.codigo_pais}"
+        return f"Pais: {self.nombre_pais}, Código País: {self.codigo_telefonico_pais}"
 
     class Meta:
         verbose_name = "País"
@@ -42,18 +37,12 @@ class Region(models.Model):
         __str__(): Devuelve una representación legible del objeto.
     """
 
-    nombre_region = models.CharField(
-        max_length=100, unique=True, blank=False, db_index=True
-    )
-    codigo_region = models.CharField(max_length=3, blank=True, null=True, unique=True)
+    nombre_region = models.CharField(max_length=100, unique=True, blank=False, db_index=True)
+    codigo_telefonico_region = models.CharField(max_length=2, blank=True, null=True, unique=True)
     pais = models.ForeignKey(Pais, on_delete=models.CASCADE)
 
-    def save(self, *args, **kwargs):
-        self.nombre_region = self.nombre_region.lower()
-        super().save(*args, **kwargs)
-
     def __str__(self):
-        return f"Nombre de la Región: {self.nombre_region}, Código telefónico de la Región: {self.codigo_region}"
+        return f"Nombre de la Región: {self.nombre_region}, Código telefónico: {self.codigo_telefonico_region}"
 
     class Meta:
         verbose_name = "Región"
@@ -72,24 +61,17 @@ class Provincia(models.Model):
         __str__(): Devuelve una representación legible del objeto.
     """
 
-    nombre_provincia = models.CharField(
-        max_length=100, unique=True, blank=True, null=True, db_index=True
-    )
-    region = models.ForeignKey(
-        Region, on_delete=models.CASCADE, db_index=True
-    )
-
-    def save(self, *args, **kwargs):
-        self.nombre_provincia = self.nombre_provincia.lower()
-        super().save(*args, **kwargs)
+    nombre_provincia = models.CharField(max_length=100, unique=True, blank=True, null=True, db_index=True)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, db_index=True)
 
     def __str__(self):
         return f"{self.region}, Provincia:{self.nombre_provincia}"
-    
+
     class Meta:
-        unique_together = ('nombre_provincia', 'region')
-        verbose_name ="Provincia"
-        verbose_name_plural ="Provincias"
+        unique_together = ("nombre_provincia", "region")
+        verbose_name = "Provincia"
+        verbose_name_plural = "Provincias"
+
 
 class Comuna(models.Model):
     """
@@ -102,19 +84,17 @@ class Comuna(models.Model):
     Métodos:
         __str__(): Devuelve una representación legible del objeto.
     """
-    nombre_comuna = models.CharField(max_length=100, unique=True,)
-    provincia = models.ForeignKey(Provincia, on_delete=models.CASCADE)
 
-    def save(self, *args, **kwargs):
-        self.nombre_comuna = self.nombre_comuna.lower()
-        super().save(*args, **kwargs)
+    nombre_comuna = models.CharField(max_length=100,unique=True,)
+    provincia = models.ForeignKey(Provincia, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.nombre_comuna}, de la provincia de: {self.provincia}"
-    
+
     class Meta:
         verbose_name = "Comuna"
         verbose_name_plural = "Comunas"
+
 
 class Ciudad(models.Model):
     """
@@ -127,5 +107,13 @@ class Ciudad(models.Model):
     Métodos:
         __str__(): Devuelve una representación legible del objeto.
     """
+
     nombre_ciudad = models.CharField(max_length=100, unique=True)
     provincia = models.ForeignKey(Provincia, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.nombre_ciudad}, de la provincia de: {self.provincia}"
+
+    class Meta:
+        verbose_name = "Ciudad"
+        verbose_name_plural = "Ciudades"
