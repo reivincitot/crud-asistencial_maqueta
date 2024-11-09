@@ -20,9 +20,56 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.error("Elemento pais_select no encontrado en el DOM.");
   }
+
+  // Vincula la función al evento de clic en el botón para guardar el país
+  const botonGuardar = document.getElementById("guardar-pais-btn");
+  if (botonGuardar) {
+    botonGuardar.addEventListener("click", guardarPais);
+  }
 });
 
-/* Obtiene la lista de países de la API y llena el <select> de países con los datos. */
+// Función para guardar el país
+function guardarPais(event) {
+  event.preventDefault();  // Previene el envío normal del formulario
+
+  // Obtener los valores de los campos del formulario
+  const nombrePais = document.getElementById('nombre_pais').value;
+  const codigoPais = document.getElementById('codigo_telefonico_pais').value;
+  const csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+
+  const data = {
+    nombre_pais: nombrePais,
+    codigo_telefonico_pais: codigoPais
+  };
+
+  fetch(paisListUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrfToken
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => {
+      if (!response.ok) {
+        return response.text().then(erroData =>{
+          throw new Error(erroData.detail || 'Error al guardar el país');
+        })
+      }
+      return response.json();
+    })
+    .then(data => {
+      alert('País guardado exitosamente');
+      obtenerPaises(); // Actualizar la lista de países
+      limpiarFormulario('formulario-localidad'); // Limpiar el formulario
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert(`Hubo un error al guardar el país:${error.message}`);
+    });
+}
+
+// Función para obtener los países
 function obtenerPaises() {
   fetch(paisListUrl) // URL de la API que devuelve la lista de países
     .then(response => response.json()) // Convierte la respuesta en JSON
@@ -46,57 +93,12 @@ function obtenerPaises() {
     });
 }
 
+// Función para limpiar el formulario
 function limpiarFormulario(formularioId) {
   const formulario = document.getElementById(formularioId);
   if (formulario) {
     formulario.reset();
-
   } else {
     console.error(`Formulario con ID "${formularioId}" no encontrado.`);
   }
 }
-
-/* Envía el nuevo país a la API mediante una solicitud POST y recarga el <select> de países. */
-document.addEventListener('DOMContentLoaded', () => {
-
-  function guardarPais(event) {
-    event.preventDefault();
-
-    // Obtener los valores de los campos del formulario
-    const nombrePais = document.getElementById('nombre_pais').value;
-    const codigoPais = document.getElementById('codigo_telefonico_pais').value;
-    const csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
-
-    // Crear un objeto con los datos a enviar
-    const data = {
-      nombre_pais: nombrePais,
-      codigo_telefonico_pais: codigoPais
-    };
-
-    // Enviar una solicitud POST a la API
-    fetch(paisListUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': csrfToken
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Error al guardar el país');
-        }
-        return response.json();
-      })
-      .then(data => {
-        alert('País guardado exitosamente');
-        obtenerPaises(); // Actualizar la lista de países
-        limpiarFormulario(); // Limpiar el formulario
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('Hubo un error al guardar el país. Por favor, inténtalo de nuevo.');
-      });
-  }
-  document.getElementById('formulario-localidad').addEventListener('submit', guardarPais);
-});

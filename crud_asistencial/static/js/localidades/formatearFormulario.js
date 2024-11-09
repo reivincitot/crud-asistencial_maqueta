@@ -4,10 +4,16 @@ function validarCamposObligatorios() {
   return Array.from(camposRequeridos).every(campo => campo.value.trim() !== "");
 }
 
-// Validación de código telefónico (debe ser numérico)
+// Validación de código telefónico con formato internacional
 function validarCodigoTelefonico(codigo) {
-  const regex = /^\d+$/;
+  const regex = /^\+\d{1,3}\s?\d{10}$/; 
   return regex.test(codigo);
+}
+
+// Función para mostrar un mensaje de error personalizado
+function mostrarErrorPersonalizado(input, mensaje) {
+  // Agregar clase de error para aplicar estilos CSS
+  errorElement.classList.add('error');
 }
 
 // Formato para mostrar al usuario (primera letra en mayúscula excepto "y")
@@ -27,7 +33,7 @@ function normalizarTexto(texto) {
 async function verificarDuplicado(input, tipo) {
   const dato = normalizarTexto(input.value);
   try {
-      const response = await fetch(`/api/verificar-duplicado?tipo=${tipo}&dato=${dato}`);
+      const response = await fetch(`/api/paises/verificar-duplicado/?tipo=${tipo}&dato=${dato}`);
       const result = await response.json();
 
       if (result.existe) {
@@ -64,6 +70,12 @@ function validarFormulario() {
   const codigoTelefonicoPais = document.getElementById("codigoTelefonicoPais");
   const codigoTelefonicoRegion = document.getElementById("codigoTelefonicoRegion");
 
+  // Verificar si los elementos existen antes de intentar acceder a sus valores
+  if (!codigoTelefonicoPais || !codigoTelefonicoRegion) {
+    console.error("Faltan los campos de código telefónico.");
+    return false; // Evita la validación si los elementos no existen
+  }
+
   // Validación de códigos numéricos
   if (!validarCodigoTelefonico(codigoTelefonicoPais.value)) {
       mostrarError(codigoTelefonicoPais, "El código telefónico del país debe ser numérico.");
@@ -82,6 +94,7 @@ function validarFormulario() {
 
   return true; // Si todas las validaciones pasan, se puede enviar
 }
+
 
 // Formatear el texto al mostrar al usuario
 function actualizarVista(input) {
@@ -106,4 +119,3 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 });
-
