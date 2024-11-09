@@ -9,9 +9,13 @@
   <section>
     <!-- Select para mostrar los países guardados -->
     <select name="pais_select" id="pais_select">
-      <option value="" placeholder="Selecciona un País"></option>
+      <option value="">Selecciona un País</option>
+      {% for pais in paises %}
+      <option value="{{ pais.id }}" data-codigo="{{ pais.codigo_telefonico_pais }}">{{ pais.nombre_pais }}</option>
+      {% endfor %}
     </select>
-    <p>Código telefónico del pais: <span id="codigo-telefonico"></span></p>
+
+    <p>Código telefónico del país: <span id="codigo-telefonico"></span></p>
     <!-- Formulario para ingresar el país -->
     <div>
       <label for="nombre_pais">Nombre del País:</label>
@@ -26,14 +30,9 @@
   </section>
   <button onclick="guardarPais(event)">Guardar País</button>
   <hr>
-
-
-
-
 </form>
 <script>  var paisListUrl = "{% url 'pais-list' %}"; </script>
 <script src="{% static 'js/localidades/formatearFormulario.js' %}" defer></script>
 <script src="{% static 'js/localidades/gestionLocalidades.js' %}" defer></script>
-
 
 {% endblock %}

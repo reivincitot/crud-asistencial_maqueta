@@ -25,7 +25,7 @@ class PaisListView(APIView):
             paises = Pais.objects.all()
             serializer = PaisSerializers(paises, many=True)
             return Response(serializer.data)
-
+        
     def post(self, request):
         serializer = PaisSerializers(data=request.data)
         if serializer.is_valid():
@@ -46,7 +46,6 @@ class PaisListView(APIView):
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 # Vista de inicio
 def home(request):
