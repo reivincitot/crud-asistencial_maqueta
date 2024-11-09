@@ -6,7 +6,7 @@ function validarCamposObligatorios() {
 
 // Validación de código telefónico con formato internacional
 function validarCodigoTelefonico(codigo) {
-  const regex = /^\+\d{1,3}\s?\d{10}$/; 
+  const regex = /^\+\d{1,3}\s?\d{10}$/;
   return regex.test(codigo);
 }
 
@@ -19,9 +19,9 @@ function mostrarErrorPersonalizado(input, mensaje) {
 // Formato para mostrar al usuario (primera letra en mayúscula excepto "y")
 function formatearTextoParaUsuario(texto) {
   return texto
-      .toLowerCase()
-      .replace(/\b\w/g, letra => letra.toUpperCase())
-      .replace(/\by\b/g, "y");
+    .toLowerCase()
+    .replace(/\b\w/g, letra => letra.toUpperCase())
+    .replace(/\by\b/g, "y");
 }
 
 // Normalización del texto para enviar al servidor (todo en minúsculas y sin acentos)
@@ -31,19 +31,23 @@ function normalizarTexto(texto) {
 
 // Verificar si el dato ya existe en el servidor
 async function verificarDuplicado(input, tipo) {
-  const dato = normalizarTexto(input.value);
-  try {
-      const response = await fetch(`/api/paises/verificar-duplicado/?tipo=${tipo}&dato=${dato}`);
-      const result = await response.json();
+  const inputValue = input.value.trim();
 
-      if (result.existe) {
-          mostrarError(input, `El ${tipo} ya existe en la base de datos.`);
-      } else {
-          limpiarError(input);
-      }
-  } catch (error) {
-      console.error("Error al verificar duplicado:", error);
-      mostrarError(input, "Hubo un problema al verificar el dato. Intenta de nuevo.");
+  if (inputValue) {
+    const campo = input.name || tipo;  // Usa el nombre del campo, o el tipo si no tiene nombre.
+    fetch(`/api/verificar-duplicado/?campo=${campo}&valor=${inputValue}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.existe) {
+          mostrarError(input, "Este valor ya existe.");
+        } else {
+          ocultarError(input);
+        }
+      })
+      .catch(error => {
+        console.error("Error al verificar duplicado:", error);
+        mostrarError(input, "Hubo un error al verificar el duplicado.");
+      });
   }
 }
 
@@ -51,8 +55,8 @@ async function verificarDuplicado(input, tipo) {
 function mostrarError(input, mensaje) {
   const errorElement = input.parentElement.querySelector(".error");
   if (errorElement) {
-      errorElement.textContent = mensaje;
-      errorElement.style.display = "block";
+    errorElement.textContent = mensaje;
+    errorElement.style.display = "block";
   }
 }
 
@@ -60,7 +64,7 @@ function mostrarError(input, mensaje) {
 function limpiarError(input) {
   const errorElement = input.parentElement.querySelector(".error");
   if (errorElement) {
-      errorElement.style.display = "none";
+    errorElement.style.display = "none";
   }
 }
 
@@ -78,18 +82,18 @@ function validarFormulario() {
 
   // Validación de códigos numéricos
   if (!validarCodigoTelefonico(codigoTelefonicoPais.value)) {
-      mostrarError(codigoTelefonicoPais, "El código telefónico del país debe ser numérico.");
-      return false;
+    mostrarError(codigoTelefonicoPais, "El código telefónico del país debe ser numérico.");
+    return false;
   }
   if (!validarCodigoTelefonico(codigoTelefonicoRegion.value)) {
-      mostrarError(codigoTelefonicoRegion, "El código telefónico de la región debe ser numérico.");
-      return false;
+    mostrarError(codigoTelefonicoRegion, "El código telefónico de la región debe ser numérico.");
+    return false;
   }
 
   // Validación de campos obligatorios
   if (!validarCamposObligatorios()) {
-      alert("Por favor, completa todos los campos obligatorios.");
-      return false;
+    alert("Por favor, completa todos los campos obligatorios.");
+    return false;
   }
 
   return true; // Si todas las validaciones pasan, se puede enviar
@@ -99,23 +103,38 @@ function validarFormulario() {
 // Formatear el texto al mostrar al usuario
 function actualizarVista(input) {
   input.value = formatearTextoParaUsuario(input.value);
+
+  // Verificar si el valor es un duplicado
+  verificarDuplicado(input);
 }
+
 
 // Event listeners para el formulario
 document.addEventListener("DOMContentLoaded", function () {
   const formulario = document.getElementById("formulario-localidad");
-  
-  if (formulario) {  // Verifica que el formulario exista
-      formulario.addEventListener("submit", (e) => {
-          if (!validarFormulario()) {
-              e.preventDefault(); // Evitar el envío si hay campos incompletos o con errores
-          }
-      });
 
-      // Agregar validación de duplicados en tiempo real
-      formulario.querySelectorAll("input[data-duplicado]").forEach(input => {
-          input.addEventListener("blur", () => verificarDuplicado(input, input.dataset.duplicado));
-          input.addEventListener("input", () => actualizarVista(input)); // Formato de visualización
-      });
+  if (formulario) {  // Verifica que el formulario exista
+    formulario.addEventListener("submit", (e) => {
+      if (!validarFormulario()) {
+        e.preventDefault(); // Evitar el envío si hay campos incompletos o con errores
+      }
+    });
+
+    // Agregar validación de duplicados en tiempo real
+    formulario.querySelectorAll("input[data-duplicado]").forEach(input => {
+      input.addEventListener("blur", () => verificarDuplicado(input, input.dataset.duplicado));
+      input.addEventListener("input", () => actualizarVista(input)); // Formato de visualización
+    });
   }
+});
+
+// Inicializa la verificación de duplicados cuando se carga la página
+document.addEventListener("DOMContentLoaded", function () {
+  // Selecciona todos los inputs que necesitan verificar duplicados
+  const inputsTexto = document.querySelectorAll("input[data-duplicado]");
+
+  inputsTexto.forEach(input => {
+    // Establece el evento blur para cada input
+    input.addEventListener('blur', () => verificarDuplicado(input, input.dataset.duplicado));
+  });
 });

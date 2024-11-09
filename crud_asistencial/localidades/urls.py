@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import LocalidadesTemplateView, PaisListView, home
+from .views import LocalidadesTemplateView, PaisListView, home, verificar_duplicado
 from rest_framework.routers import DefaultRouter
 
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('home/', home, name='home'),
     path('localidades/', LocalidadesTemplateView.as_view(), name='ingresar_localidades'),  # Aquí cambia el nombre de 'localidades' a 'ingresar_localidades'
     path('', include(router.urls)),
+    path('api/verificar-duplicado/', verificar_duplicado, name='verificar-duplicado'),
 ]

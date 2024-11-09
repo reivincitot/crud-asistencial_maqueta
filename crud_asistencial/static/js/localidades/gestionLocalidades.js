@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Función para guardar el país
-function guardarPais(event) {
+async function guardarPais(event) {
   event.preventDefault();  // Previene el envío normal del formulario
 
   // Obtener los valores de los campos del formulario
@@ -37,37 +37,42 @@ function guardarPais(event) {
   const codigoPais = document.getElementById('codigo_telefonico_pais').value;
   const csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
 
-  const data = {
+  const datosPais = {
     nombre_pais: nombrePais,
     codigo_telefonico_pais: codigoPais
   };
 
-  fetch(paisListUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-CSRFToken': csrfToken
-    },
-    body: JSON.stringify(data)
-  })
-    .then(response => {
-      if (!response.ok) {
-        return response.text().then(erroData =>{
-          throw new Error(erroData.detail || 'Error al guardar el país');
-        })
+  try {
+    const response = await fetch(paisListUrl, {
+      method: "POST",
+      body: JSON.stringify(datosPais),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken
       }
-      return response.json();
-    })
-    .then(data => {
-      alert('País guardado exitosamente');
-      obtenerPaises(); // Actualizar la lista de países
-      limpiarFormulario('formulario-localidad'); // Limpiar el formulario
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert(`Hubo un error al guardar el país:${error.message}`);
     });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      if (result && result.nombre_pais) {
+        alert(`Error: ${result.nombre_pais[0]}`);
+      } else {
+        alert("Hubo un error al guardar el país.");
+      }
+      return;
+    }
+
+    alert("País guardado correctamente.");
+    obtenerPaises();  // Actualizar la lista de países
+    limpiarFormulario('formulario-localidad');  // Limpiar el formulario
+
+  } catch (error) {
+    console.error("Error al guardar el país:", error);
+    alert("Hubo un error al guardar el país: " + error.message);
+  }
 }
+
 
 // Función para obtener los países
 function obtenerPaises() {
