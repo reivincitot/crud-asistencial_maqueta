@@ -6,7 +6,7 @@
             "regiones": [
                 {
                     "nombre": "Arica y Parinacota",
-                    "codigo_area": "58",
+                    "prefijo_telefonico": "58",
                     "provincias": [
                         {
                             "nombre": "Arica",
@@ -26,7 +26,7 @@
                 },
                 {
                     "nombre": "Tarapaca",
-                    "codigo_area": "57",
+                    "prefijo_telefonico": "57",
                     "provincias":[
                         {
                             "nombre":"Iquique",
@@ -50,7 +50,7 @@
                 },
                 {
                     "nombre":"Antofagasta",
-                    "codigo_area":"55",
+                    "prefijo_telefonico":"55",
                     "provincias":[
                         {
                             "nombre": "Antofagasta",
@@ -80,7 +80,7 @@
                 },
                 {
                     "nombre":"Atacama",
-                    "codigo_area":"52",
+                    "prefijo_telefonico":"52",
                     "provincias":[
                         {
                             "nombre": "Chañaral",
@@ -110,7 +110,7 @@
                 },
                 {
                     "nombre": "Coquimbo",
-                    "codigo_area": "51",
+                    "prefijo_telefonico": "51",
                     "provincias":[
                         {
                             "nombre": "Choapa",
@@ -146,6 +146,13 @@
                 },
                 {
                     "nombre":"Valparaíso",
+                    "prefijo_telefonico":[
+                        {"nombre": "Valparaíso y Marga Marga(Quilpue, Villa Alemana)", "prefijo":"32"},
+                        {"nombre": "Petorca, Quillota y Marga Marga(Limache y Olmué)", "prefijo":"33"},
+                        {"nombre": "Los Andes y San Felipe de Aconcagua", "prefijo": "34"},
+                        {"nombre": "San Antonio","prefijo": "35"},
+                        {"nombre": "Isla de Pascua", "prefijo": "39"}
+                    ],
                     "provincias": [
                         {
                             "nombre": "Isla de Pascua",
@@ -227,7 +234,7 @@
                 },
                 {
                     "nombre": "Region Metropolitana",
-                    "codigo_area": "02",
+                    "prefijo_telefonico": "2",
                     "provincias":[
                         {
                             "nombre": "Chacabuco",
@@ -238,48 +245,500 @@
                             ]
                         },
                         {
-                            "nombre":"Cordillera"
+                            "nombre":"Cordillera",
+                            "comunas": [
+                                {"nombre": "Pirque"},
+                                {"nombre": "Puente Alto"},
+                                {"nombre": "San José de Maipo"}
+                            ]
                         },
                         {
-                            "nombre": "Maipo"
+                            "nombre": "Maipo",
+                            "comunas":[
+                                {"nombre": "Buín"},
+                                {"nombre": "Calera de Tango"},
+                                {"nombre": "Paine"},
+                                {"nombre": "San Bernardo"}
+                            ]
                         },
                         {
-                            "nombre": "Melipilla"
+                            "nombre": "Melipilla",
+                            "comunas": [
+                                {"nombre": "Alhué"},
+                                {"nombre": "Curacaví"},
+                                {"nombre": "María Pinto"},
+                                {"nombre": "Melipilla"},
+                                {"nombre": "San Pedro"}
+                            ]
                         },
                         {
-                            "nombre": "Santiago"
+                            "nombre": "Santiago",
+                            "comunas":[
+                                {"nombre": "Cerrillos"},
+                                {"nombre": "Cerro Navia"},
+                                {"nombre": "Conchalí"},
+                                {"nombre": "El Bosque"},
+                                {"nombre": "Estación Central"},
+                                {"nombre": "Huechuraba"},
+                                {"nombre": "Independencia"},
+                                {"nombre": "La Cisterna"},
+                                {"nombre": "La Florida"},
+                                {"nombre": "La Granja"},
+                                {"nombre": "La Pintana"},
+                                {"nombre": "La Reina"},
+                                {"nombre": "Las Condes"},
+                                {"nombre": "Lo Barnechea"},
+                                {"nombre": "Lo Espejo"},
+                                {"nombre": "Lo Prado"},
+                                {"nombre": "Macul"},
+                                {"nombre": "Maipú"},
+                                {"nombre": "Ñuñoa"},
+                                {"nombre": "Pedro Aguirre Cerda"},
+                                {"nombre": "Peñalolén"},
+                                {"nombre": "Providencia"},
+                                {"nombre": "Pudahuel"},
+                                {"nombre": "Quilicura"},
+                                {"nombre": "Quinta Normal"},
+                                {"nombre": "Recoleta"},
+                                {"nombre": "Renca"},
+                                {"nombre": "San Joaquín"},
+                                {"nombre": "San Miguel"},
+                                {"nombre": "San Ramón"},
+                                {"nombre": "Santiago"},
+                                {"nombre": "Vitacura"}
+                            ]
                         },
                         {
-                            "nombre": "Talagante"
+                            "nombre": "Talagante",
+                            "comunas":[
+                                {"nombre": "El Monte"},
+                                {"nombre": "Isla de Maipo"},
+                                {"nombre": "Padre Hurtado"},
+                                {"nombre": "Peñaflor"},
+                                {"nombre": "Talagante"}
+                            ]
                         }
                     ]
                 },
                 {
-                    "nombre": "O'higgins"
+                    "nombre": "O'Higgins",
+                    "prefijo_telefonico": "72",
+                    "provincias":[
+                        {
+                            "nombre":"Cachapoal",
+                            "comunas":[
+                                {"nombre":"Codegua"},
+                                {"nombre": "Coinco"},
+                                {"nombre": "Coltauco"},
+                                {"nombre": "Doñihue"},
+                                {"nombre": "Graneros"},
+                                {"nombre": "Las Cabras"},
+                                {"nombre": "Machalí"},
+                                {"nombre": "Malloa"},
+                                {"nombre": "Olivar"},
+                                {"nombre": "Peumo"},
+                                {"nombre": "Pichidegua"},
+                                {"nombre": "Quinta de Tilcoco"},
+                                {"nombre": "Rancagua"},
+                                {"nombre": "Rengo"},
+                                {"nombre": "Requínoa"},
+                                {"nombre": "San Vicente de Tagua Tagua"}
+                            ]
+                        },
+                        {
+                            "nombre":"Cardenal Caro",
+                            "comunas":[
+                                {"nombre": "La Estrella"},
+                                {"nombre": "Litueche"},
+                                {"nombre": "Marchigüe"},
+                                {"nombre":"Navidad"},
+                                {"nombre": "Paredones"},
+                                {"nombre": "Pichilemu"}
+                            ]
+                        },
+                        {
+                            "nombre": "Colchagua",
+                            "comunas": [
+                                {"nombre": "Chépica"},
+                                {"nombre": "Chimbarongo"},
+                                {"nombre": "Lolol"},
+                                {"nombre": "Nancagua"},
+                                {"nombre": "Palmilla"},
+                                {"nombre": "Peralillo"},
+                                {"nombre": "Placilla"},
+                                {"nombre": "Pumanque"},
+                                {"nombre": "San Fernando"},
+                                {"nombre": "Santa Cruz"}
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "nombre": "Maule"
+                    "nombre": "Maule",
+                    "prefijo_telefonico":[
+                        {"nombre": "Talca", "prefijo":"71"},
+                        {"nombre": "Cauquenes y Linares", "prefijo":"73"},
+                        {"nombre": "Curicó", "prefijo": 75}
+                    ],
+                    "provincias": [
+                        {
+                            "nombre": "Cauquenes",
+                            "comunas":[
+                                {"nombre": "Cauquenes"},
+                                {"nombre": "Chanco"},
+                                {"nombre": "Pelluhue"}
+                            ]
+                        },
+                        {
+                            "nombre": "Curicó",
+                            "comunas":[
+                                {"nombre": "Curicó"},
+                                {"nombre":"Hualañé"},
+                                {"nombre": "Licantén"},
+                                {"nombre": "Molina"},
+                                {"nombre": "Rauco"},
+                                {"nombre": "Romeral"},
+                                {"nombre": "Sagrada Familia"},
+                                {"nombre": "Teno"},
+                                {"nombre": "Vichuquén"}
+                            ]
+                        },
+                        {
+                            "nombre":"Linares",
+                            "comunas": [
+                                {"nombre": "Colbún"},
+                                {"nombre": "Linares"},
+                                {"nombre": "Longaví"},
+                                {"nombre": "Parral"},
+                                {"nombre": "Retiro"},
+                                {"nombre": "San Javier"},
+                                {"nombre": "Villa Alegre"},
+                                {"nombre": "Yerbas Buenas"}
+                            ]
+                        },
+                        {
+                            "nombre": "Talca",
+                            "comunas": [
+                                {"nombre": "Constitución"},
+                                {"nombre": "Curepto"},
+                                {"nombre": "Empedrado"},
+                                {"nombre": "Maule"},
+                                {"nombre": "Pelarco"},
+                                {"nombre": "Pencahue"},
+                                {"nombre": "Río Claro"},
+                                {"nombre": "San Clemente"},
+                                {"nombre": "San Rafael"},
+                                {"nombre": "Talca"}
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "nombre": "Ñuble"
+                    "nombre": "Ñuble",
+                    "prefijo_telefonico":"42",
+                    "provincias":[
+                        {
+                            "nombre": "Diguillín",
+                            "comunas": [
+                                {"nombre": "Bulnes"},
+                                {"nombre": "Chillán"},
+                                {"nombre": "Chillán Viejo"},
+                                {"nombre": "El Carmen"},
+                                {"nombre": "Pemuco"},
+                                {"nombre": "Pinto"},
+                                {"nombre": "Quillón"},
+                                {"nombre": "San Ignacio"},
+                                {"nombre": "Yungay"}
+                            ]
+                        },
+                        {
+                            "nombre": "Itata",
+                            "comunas": [
+                                {"nombre": "Cobquecura"},
+                                {"nombre": "Coelemu"},
+                                {"nombre": "Ninhue"},
+                                {"nombre": "Portezuelo"},
+                                {"nombre": "Quirihue"},
+                                {"nombre": "Ránquil"},
+                                {"nombre": "Treguaco"}
+                            ]
+                        },
+                        {
+                            "nombre": "Punilla",
+                            "comunas": [
+                                {"nombre": "Coihueco"},
+                                {"nombre": "Ñiquén"},
+                                {"nombre": "San Carlos"},
+                                {"nombre": "San Fabián"},
+                                {"nombre": "San Nicolás"}
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "nombre": "BioBio"
+                    "nombre": "BioBío",
+                    "prefijo_telefonico":"43",
+                    "provincias": [
+                        {
+                            "nombre": "Arauco",
+                            "comunas": [
+                                {"nombre": "Arauco"},
+                                {"nombre": "Cañete"},
+                                {"nombre": "Contulmo"},
+                                {"nombre": "Curanilahue"},
+                                {"nombre": "Lebu"},
+                                {"nombre": "Los Álamos"},
+                                {"nombre": "Tirúa"}
+                            ]
+                        },
+                        {
+                            "nombre": "BioBío",
+                            "comunas": [
+                                {"nombre":"Alto BioBío"},
+                                {"nombre": "Antuco"},
+                                {"nombre": "Cabrero"},
+                                {"nombre": "Laja"},
+                                {"nombre": "Los Ángeles"},
+                                {"nombre": "Mulchén"},
+                                {"nombre": "Nacimiento"},
+                                {"nombre": "Negrete"},
+                                {"nombre": "Quilaco"},
+                                {"nombre": "Quileco"},
+                                {"nombre": "San Rosendo"},
+                                {"nombre": "Santa Bárbara"},
+                                {"nombre": "Tucapel"},
+                                {"nombre": "Yumbel"}
+                            ]
+                        },
+                        {
+                            "nombre": "Concepción",
+                            "comunas": [
+                                {"nombre": "Chiguayante"},
+                                {"nombre": "Concepción"},
+                                {"nombre": "Coronel"},
+                                {"nombre": "Florida"},
+                                {"nombre": "Hualpen"},
+                                {"nombre": "Hualqui"},
+                                {"nombre": "Lota"},
+                                {"nombre": "Penco"},
+                                {"nombre": "San Pedro de la Paz"},
+                                {"nombre": "Santa Juana"},
+                                {"nombre": "Talcahuano"},
+                                {"nombre": "Tomé"}
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "nombre": "Araucanía"
+                    "nombre": "Araucania",
+                    "prefijo_telefonico":"45",
+                    "provincias":[
+                        {
+                            "nombre": "Cautín",
+                            "comunas":[
+                                {"nombre": "Carahue"},
+                                {"nombre": "Cholchol"},
+                                {"nombre": "Cunco"},
+                                {"nombre": "Curarrehue"},
+                                {"nombre": "Freire"},
+                                {"nombre": "Galvarino"},
+                                {"nombre": "Gorbea"},
+                                {"nombre": "Lautaro"},
+                                {"nombre": "Loncoche"},
+                                {"nombre": "Melipeuco"},
+                                {"nombre": "Nueva Imperial"},
+                                {"nombre": "Padre Las Casas"},
+                                {"nombre": "Perquenco"},
+                                {"nombre": "Pitrufquén"},
+                                {"nombre": "Pucón"},
+                                {"nombre": "Puerto Saavedra"},
+                                {"nombre": "Temuco"},
+                                {"nombre": "Teodoro Schmidt"},
+                                {"nombre": "Temuco"},
+                                {"nombre": "Toltén"},
+                                {"nombre": "Vilcún"},
+                                {"nombre": "Villarrica"}
+                            ]
+                        },
+                        {
+                            "nombre": "Malleco",
+                            "comunas":[
+                                {"nombre": "Angol"},
+                                {"nombre": "Collipulli"},
+                                {"nombre": "Ercilla"},
+                                {"nombre": "Lonquimay"},
+                                {"nombre": "Los Sauces"},
+                                {"nombre": "Lumaco"},
+                                {"nombre": "Purén"},
+                                {"nombre": "Renaico"},
+                                {"nombre": "Traiguén"},
+                                {"nombre": "Victoria"}
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "nombre":"Los Rios"
+                    "nombre":"Los Rios",
+                    "prefijo_telefonico": [
+                        {"nombre": "Provincia de: Valdivia y Ranco(excepto comunas de La Union y Río Bueno)", "prefijo":"63"},
+                        {"nombre": "Provincia de Ranco(comunas de La Union y Río Bueno) y Osorno", "prefijo":"64"}
+                    ],
+                    "provincias":[
+                        {
+                            "nombre": "Valdivia",
+                            "comunas":[
+                                {"nombre": "Mariquina"},
+                                {"nombre": "Lanco"},
+                                {"nombre": "Máfil"},
+                                {"nombre": "Valdivia"},
+                                {"nombre": "Corral"},
+                                {"nombre": "Paillaco"},
+                                {"nombre": "Los Lagos"},
+                                {"nombre": "Panguipulli"}
+                            ]
+                        },
+                        {
+                            "nombre": "Ranco",
+                            "comunas": [
+                                {"nombre": "La Unión"},
+                                {"nombre": "Río Bueno"},
+                                {"nombre": "Lago Ranco"},
+                                {"nombre": "Futrono"}
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "nombre": "Los Lagos"
+                    "nombre": "Los Lagos",
+                    "prefijo_telefonico":"65",
+                    "provincias":[
+                        {
+                            "nombre": "Chiloé",
+                            "comunas":[
+                                {"nombre": "Ancud"},
+                                {"nombre": "Castro"},
+                                {"nombre": "Chonchi"},
+                                {"nombre": "Curacao de Vélez"},
+                                {"nombre": "Dalcahue"},
+                                {"nombre": "Puqueldón"},
+                                {"nombre": "Queilén"},
+                                {"nombre": "Quellón"},
+                                {"nombre": "Quemchi"},
+                                {"nombre": "Quinchao"}
+                            ]
+                        },
+                        {
+                            "nombre": "Llanquihue",
+                            "comunas":[
+                                {"nombre": "Calbuco"},
+                                {"nombre": "Cochamó"},
+                                {"nombre": "Fresia"},
+                                {"nombre": "Frutillar"},
+                                {"nombre": "Llanquihue"},
+                                {"nombre": "Los Muermos"},
+                                {"nombre": "Maullín"},
+                                {"nombre": "Puerto Montt"},
+                                {"nombre": "Puerto Varas"}
+                            ]
+                        },
+                        {
+                            "nombre": "Osorno",
+                            "comunas":[
+                                {"nombre": "Osorno"},
+                                {"nombre": "Puerto Octay"},
+                                {"nombre": "Purranque"},
+                                {"nombre": "Puyehue"},
+                                {"nombre": "Río Negro"},
+                                {"nombre": "San Juan de la Costa"},
+                                {"nombre": "San Pablo"}
+                            ]
+                        },
+                        {
+                            "nombre": "Palena",
+                            "comunas":[
+                                {"nombre": "Chaitén"},
+                                {"nombre": "Futaleufú"},
+                                {"nombre": "Hualaihué"},
+                                {"nombre": "Palena"}
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "nombre":"Aysén"
+                    "nombre":"Aysén",
+                    "prefijo_telefonico":[
+                        {"nombre": "Aysén ,Capitán Prat, Coyhaique y General Carrera", "prefijo":"67"},
+                        {"nombre": "Aysén(Puyuhuapi)", "prefijo":"68"}
+                    ],
+                    "provincias":[
+                        {
+                            "nombre": "Aysén",
+                            "comunas":[
+                                {"nombre": "Aysén"},
+                                {"nombre": "Cisnes"},
+                                {"nombre": "Gaitecas"}
+                            ]
+                        },
+                        {
+                            "nombre": "Capitán Prat",
+                            "comunas":[
+                                {"nombre": "Cochrane"},
+                                {"nombre": "O'Higgins"},
+                                {"nombre": "Tortel"}
+                            ]
+                        },
+                        {
+                            "nombre": "Coyhaique",
+                            "comunas": [
+                                {"nombre": "Lago Verde"},
+                                {"nombre": "Coyhaique"}
+                            ]
+                        },
+                        {
+                            "nombre": "General Carrera",
+                            "comunas":[
+                                {"nombre": "Chile Chico"},
+                                {"nombre": "Rio Ibáñez"}
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "nombre": "Magallanes"
+                    "nombre": "Magallanes y la Antártica Chilena",
+                    "prefijo_telefonico":"61",
+                    "provincias":[
+                        {
+                            "nombre": "Antártica Chilena",
+                            "comunas": [
+                                {"nombre": "Antártica"},
+                                {"nombre": "Cabo de Hornos"}
+                            ]
+                        },
+                        {
+                            "nombre": "Magallanes",
+                            "comunas":[
+                                {"nombre": "Laguna Blanca"},
+                                {"nombre": "Punta Arenas"},
+                                {"nombre": "Río Verde"},
+                                {"nombre": "San Gregorio"}
+                            ]
+                        },
+                        {
+                            "nombre": "Tierra del Fuego",
+                            "comunas":[
+                                {"nombre": "Porvenir"},
+                                {"nombre": "Primavera"},
+                                {"nombre": "Timaukel"}
+                            ]
+                        },
+                        {
+                            "nombre": "Última Esperanza",
+                            "comunas":[
+                                {"nombre": "Natales"},
+                                {"nombre": "Torres del Paine"}
+                            ]
+                        }
+                    ]
                 }
             ]
         }
