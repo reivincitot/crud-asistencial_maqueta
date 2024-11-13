@@ -1,0 +1,287 @@
+{
+    "paises": [
+        {
+            "nombre": "Chile",
+            "codigo_telefonico": "+56",
+            "regiones": [
+                {
+                    "nombre": "Arica y Parinacota",
+                    "codigo_area": "58",
+                    "provincias": [
+                        {
+                            "nombre": "Arica",
+                            "comunas": [
+                                {"nombre": "Arica"},
+                                {"nombre": "Camanarones"}
+                            ]
+                        },
+                        {
+                            "nombre": "Parinacota",
+                            "comunas": [
+                                {"nombre": "General Lagos"},
+                                {"nombre": "Putre"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Tarapaca",
+                    "codigo_area": "57",
+                    "provincias":[
+                        {
+                            "nombre":"Iquique",
+                            "comunas":[
+                                {"nombre":"Iquique"},
+                                {"nombre":"Alto Hospicio"}
+                            ]
+                        },
+                        {
+                            "nombre":"Tamarugal", 
+                            "comunas": [
+                                {"nombre": "Camiña"},
+                                {"nombre":"Colchane"},
+                                {"nombre": "Huara"},
+                                {"nombre": "Pica"},
+                                {"nombre": "Pozo Almonte"
+                                }
+                            ]   
+                        }
+                    ]
+                },
+                {
+                    "nombre":"Antofagasta",
+                    "codigo_area":"55",
+                    "provincias":[
+                        {
+                            "nombre": "Antofagasta",
+                            "comunas":[
+                                {"nombre": "Antofagasta"},
+                                {"nombre": "Mejillones"},
+                                {"nombre": "Sierra Gorda"},
+                                {"nombre": "Taltal"}
+                            ]
+                        },
+                        {
+                            "nombre": "El Loa",
+                            "comunas":[
+                                {"nombre": "Calama"},
+                                {"nombre": "Ollague"},
+                                {"nombre": "San Pedro de Atacama"}
+                            ]
+                        },
+                        {
+                            "nombre": "Tocopilla",
+                            "comunas": [
+                                {"nombre": "María Elena"}, 
+                                {"nombre": "Tocopilla"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nombre":"Atacama",
+                    "codigo_area":"52",
+                    "provincias":[
+                        {
+                            "nombre": "Chañaral",
+                            "comunas": [
+                                {"nombre":"Chañaral"},
+                                {"nombre": "Diego de Almagro"}
+                            ]
+                        },
+                        {
+                            "nombre": "Copiapó",
+                            "comunas": [
+                                {"nombre": "Caldera"},
+                                {"nombre": "Copiapó"},
+                                {"nombre": "Tierra Amarilla"}
+                            ]
+                        },
+                        {
+                            "nombre": "Huasco",
+                            "comunas": [
+                                {"nombre": "Alto del Carmen"},
+                                {"nombre": "Freirina"},
+                                {"nombre": "Huasco"},
+                                {"nombre": "Vallenar"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Coquimbo",
+                    "codigo_area": "51",
+                    "provincias":[
+                        {
+                            "nombre": "Choapa",
+                            "comunas":[
+                                {"nombre": "Canela"},
+                                {"nombre": "Illapel"},
+                                {"nombre": "Los Vilos"},
+                                {"nombre": "Salamanca"}
+                            ]
+                        },
+                        {
+                            "nombre": "Elqui",
+                            "comunas": [
+                                {"nombre": "Andacollo"},
+                                {"nombre": "Coquimbo"},
+                                {"nombre": "La Higuera"},
+                                {"nombre": "La Serena"},
+                                {"nombre": "Paihano"},
+                                {"nombre": "Vicuña"}
+                            ]
+                        },
+                        {
+                            "nombre": "Limarí",
+                            "comunas": [
+                                {"nombre":"Combarbalá"},
+                                {"nombre": "Monte Patria"},
+                                {"nombre":"Ovalle"},
+                                {"nombre":"Punitaqui"},
+                                {"nombre": "Río Hurtado"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nombre":"Valparaíso",
+                    "provincias": [
+                        {
+                            "nombre": "Isla de Pascua",
+                            "comunas": "Rapa Nui"
+                        },
+                        {
+                            "nombre": "Los Andes",
+                            "comunas": [
+                                {"nombre": "Calle Larga"},
+                                {"nombre": "Los Andes"},
+                                {"nombre": "Rinconada"},
+                                {"nombre": "San Esteban"}
+                            ]
+                        },
+                        {
+                            "nombre": "Marga Marga",
+                            "comunas": [
+                                {"nombre":"Limache"},
+                                {"nombre": "Olmué"},
+                                {"nombre": "Quilpué"},
+                                {"nombre": "Villa Alemana"}
+                            ]
+                        },
+                        {
+                            "nombre": "Petorca",
+                            "comunas": [
+                                {"nombre": "Cabildo"},
+                                {"nombre": "La Ligua"},
+                                {"nombre": "Papudo"},
+                                {"nombre": "Petorca"},
+                                {"nombre": "Zapallar"}
+                            ]
+                        },
+                        {
+                            "nombre": "Quillota",
+                            "comunas": [
+                                {"nombre": "Hijuelas"},
+                                {"nombre": "La Calera"},
+                                {"nombre": "La Cruz"},
+                                {"nombre": "Nogales"},
+                                {"nombre": "Quillota"}
+                            ]
+                        },
+                        {
+                            "nombre": "San Antonio",
+                            "comunas": [
+                                {"nombre": "Algarrobo"},
+                                {"nombre": "Cartagena"},
+                                {"nombre": "El Quisco"},
+                                {"nombre": "El Tabo"},
+                                {"nombre": "San Antonio"},
+                                {"nombre": "Santo Domingo"}
+                            ]
+                        },
+                        {
+                            "nombre": "San Felipe de Aconcagua",
+                            "comunas":[
+                                {"nombre": "Catemu"},
+                                {"nombre": "Llay-Llay"},
+                                {"nombre": "Panquehue"},
+                                {"nombre": "Putaendo"},
+                                {"nombre": "San Felipe"},
+                                {"nombre": "Santa María"}
+                            ]
+                        },
+                        {
+                            "nombre": "Valparíso",
+                            "comunas": [
+                                {"nombre": "Casablanca"},
+                                {"nombre": "Concón"},
+                                {"nombre": "Juan Fernández"},
+                                {"nombre": "Puchuncaví"},
+                                {"nombre":"Quintero"},
+                                {"nombre": "Valparaíso"},
+                                {"nombre": "Viña del Mar"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Region Metropolitana",
+                    "codigo_area": "02",
+                    "provincias":[
+                        {
+                            "nombre": "Chacabuco",
+                            "comunas":[
+                                {"nombre": "Colina"},
+                                {"nombre": "Lampa"},
+                                {"nombre": "Tiltil"}
+                            ]
+                        },
+                        {
+                            "nombre":"Cordillera"
+                        },
+                        {
+                            "nombre": "Maipo"
+                        },
+                        {
+                            "nombre": "Melipilla"
+                        },
+                        {
+                            "nombre": "Santiago"
+                        },
+                        {
+                            "nombre": "Talagante"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "O'higgins"
+                },
+                {
+                    "nombre": "Maule"
+                },
+                {
+                    "nombre": "Ñuble"
+                },
+                {
+                    "nombre": "BioBio"
+                },
+                {
+                    "nombre": "Araucanía"
+                },
+                {
+                    "nombre":"Los Rios"
+                },
+                {
+                    "nombre": "Los Lagos"
+                },
+                {
+                    "nombre":"Aysén"
+                },
+                {
+                    "nombre": "Magallanes"
+                }
+            ]
+        }
+    ]
+}
