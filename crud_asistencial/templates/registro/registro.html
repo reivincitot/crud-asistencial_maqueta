@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Registro de Persona</h2>
+  <form method="POST" class="needs-validation" novalidate>
+    <!-- CSRF Token -->
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input type="text" id="name" name="name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="rut" class="form-label">RUT</label>
+      <input type="text" id="rut" name="rut" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="date_of_birth" class="form-label">Fecha de nacimiento</label>
+      <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" name="email" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="cell_phone_number" class="form-label">Teléfono</label>
+      <input type="tel" id="cell_phone_number" name="cell_phone_number" class="form-control">
+    </div>
+
+    <!-- Selects dinámicos -->
+    <div class="mb-3">
+      <label for="region" class="form-label">Región</label>
+      <select id="region" name="region" class="form-select" required>
+        <option value="">Seleccione una región</option>
+        <!-- Opciones dinámicas -->
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="province" class="form-label">Provincia</label>
+      <select id="province" name="province" class="form-select" required>
+        <option value="">Seleccione una provincia</option>
+        <!-- Opciones dinámicas -->
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="commune" class="form-label">Comuna</label>
+      <select id="commune" name="commune" class="form-select" required>
+        <option value="">Seleccione una comuna</option>
+        <!-- Opciones dinámicas -->
+      </select>
+    </div>
+
+    <!-- Campos adicionales para roles -->
+    <div class="mb-3">
+      <label for="role" class="form-label">Rol</label>
+      <select id="role" name="role" class="form-select">
+        <option value="paciente">Paciente</option>
+        <option value="profesional">Profesional de la Salud</option>
+        <option value="otro">Otro Trabajador</option>
+      </select>
+    </div>
+
+    <div id="profesional-fields" class="mb-3" style="display: none;">
+      <label for="specialty" class="form-label">Especialidad</label>
+      <input type="text" id="specialty" name="specialty" class="form-control">
+
+      <label for="medic_rol_number" class="form-label">Nº de Rol Médico</label>
+      <input type="text" id="medic_rol_number" name="medic_rol_number" class="form-control">
+    </div>
+
+    <div class="mt-4">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

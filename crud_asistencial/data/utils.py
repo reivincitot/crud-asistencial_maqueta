@@ -61,22 +61,3 @@ def validate_nombre(value):
     if not re.match(r'^[a-zA-Z\s]+$', value):
         raise ValidationError("El nombre solo puede contener letras y espacios.")
     return value
-
-def validate_codigo_telefonico(value):
-    # Validar el código telefónico para País
-    if not re.match(r'^\+\d{1,4}$', value) and not re.match(r'^\d{2}$', value):
-        raise ValidationError(f"El código telefónico '{value}' no tiene un formato válido")
-
-    # Obtener los modelos 'Pais' y 'Region' de la app 'localidades'
-    Pais = apps.get_model('localidades', 'Pais')
-    Region = apps.get_model('localidades', 'Region')
-    
-    # Verificar si el código telefónico ya existe en la tabla de Pais
-    if Pais.objects.filter(codigo_telefonico_pais=value).exists():
-        raise ValidationError(f"El código telefónico '{value}' ya está registrado para un país.")
-    
-    # Verificar si el código telefónico ya existe en la tabla de Region
-    if Region.objects.filter(codigo_telefonico_region=value).exists():
-        raise ValidationError(f"El código telefónico '{value}' ya está registrado para una región.")
-
-    return value
