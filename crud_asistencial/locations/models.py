@@ -35,7 +35,5 @@ class Address(models.Model):
             return f"{self.street}, {self.number}, {self.commune.name}"
     
     class Meta:
-        verbose_name = "DirecciÓn"
+        verbose_name = "Dirección"
         verbose_name_plural = "Direcciones"
-
-        

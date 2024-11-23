@@ -10,7 +10,7 @@ class MedicalRecord(models.Model):
     treatments = models.TextField(blank=True, null=True, help_text="Historial de tratamientos")
     exams = models.TextField(blank=True, null=True, help_text="Resultado de exámenes médicos")
     vital_signs = models.JSONField(blank=True, null=True, help_text = "Signos vitales registrados")
-
+    blood_type = models.CharField(max_length=3)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
