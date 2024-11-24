@@ -7,57 +7,66 @@
   <form method="POST" class="needs-validation" novalidate>
     <!-- CSRF Token -->
     {% csrf_token %}
+    <section>
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input type="text" id="name" name="name" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="father_lastname" class="form-label">Apellido Paterno</label>
+        <input type="text" id="father_last_name" name="father_last_name" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="mother_lastname" class="form-label">Apellido Materno</label>
+        <input type="text" id="mother_last_name" name="mother_last_name" class="form-control" required>
+      </div>
 
-    <div class="mb-3">
-      <label for="name" class="form-label">Nombre</label>
-      <input type="text" id="name" name="name" class="form-control" required>
-    </div>
+      <div class="mb-3">
+        <label for="rut" class="form-label">RUT</label>
+        <input type="text" id="rut" name="rut" class="form-control" required>
+      </div>
 
-    <div class="mb-3">
-      <label for="rut" class="form-label">RUT</label>
-      <input type="text" id="rut" name="rut" class="form-control" required>
-    </div>
+      <div class="mb-3">
+        <label for="date_of_birth" class="form-label">Fecha de nacimiento</label>
+        <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" required>
+      </div>
 
-    <div class="mb-3">
-      <label for="date_of_birth" class="form-label">Fecha de nacimiento</label>
-      <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" required>
-    </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+      </div>
 
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" id="email" name="email" class="form-control" required>
-    </div>
+      <div class="mb-3">
+        <label for="cell_phone_number" class="form-label">Teléfono</label>
+        <input type="tel" id="cell_phone_number" name="cell_phone_number" class="form-control">
+      </div>
+    </section>
+    <section>
+      <!-- Selects dinámicos -->
+      <div class="mb-3">
+        <label for="region" class="form-label">Región</label>
+        <select id="region" name="region" class="form-select" required>
+          <option value="">Seleccione una región</option>
+          {% for region in regiones %}
+          <option value="{{ region.nombre }}">{{ region.nombre }}</option>
+          {% endfor %}
+        </select>
+      </div>
 
-    <div class="mb-3">
-      <label for="cell_phone_number" class="form-label">Teléfono</label>
-      <input type="tel" id="cell_phone_number" name="cell_phone_number" class="form-control">
-    </div>
+      <div class="mb-3">
+        <label for="province" class="form-label">Provincia</label>
+        <select id="province" name="province" class="form-select" required>
+          <option value="">Seleccione una provincia</option>
+        </select>
+      </div>
 
-    <!-- Selects dinámicos -->
-    <div class="mb-3">
-      <label for="region" class="form-label">Región</label>
-      <select id="region" name="region" class="form-select" required>
-        <option value="">Seleccione una región</option>
-        <!-- Opciones dinámicas -->
-      </select>
-    </div>
-
-    <div class="mb-3">
-      <label for="province" class="form-label">Provincia</label>
-      <select id="province" name="province" class="form-select" required>
-        <option value="">Seleccione una provincia</option>
-        <!-- Opciones dinámicas -->
-      </select>
-    </div>
-
-    <div class="mb-3">
-      <label for="commune" class="form-label">Comuna</label>
-      <select id="commune" name="commune" class="form-select" required>
-        <option value="">Seleccione una comuna</option>
-        <!-- Opciones dinámicas -->
-      </select>
-    </div>
-
+      <div class="mb-3">
+        <label for="commune" class="form-label">Comuna</label>
+        <select id="commune" name="commune" class="form-select" required>
+          <option value="">Seleccione una comuna</option>
+        </select>
+      </div>
+    </section>
     <!-- Campos adicionales para roles -->
     <div class="mb-3">
       <label for="role" class="form-label">Rol</label>
@@ -81,4 +90,7 @@
     </div>
   </form>
 </div>
+
+<script src="{% static 'js/formats/capitalizeWords.js'%}"></script>
+<script src="{% static 'js/registro/localidadesSelect.js'%}"></script>
 {% endblock %}

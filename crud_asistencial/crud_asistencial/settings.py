@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     'registro',
     'locations',
     'medical_record',
+    'medical_staff',
+    'patient',
     ]
 
 MIDDLEWARE = [
