@@ -1,4 +1,5 @@
 from django.db import models
+from registro.models import AbstractPerson
 
 # Create your models here.
 class ProfesionalDeSalud(AbstractPerson):

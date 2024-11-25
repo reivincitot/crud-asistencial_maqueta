@@ -9,13 +9,14 @@ services:
       - "8000:8000"
     volumes:
       - ./crud_asistencial:/app
+      - ./wait-for-it.sh:/wait-for-it.sh  # Asegúrate de montar el script dentro del contenedor
     env_file:
       - .env
     depends_on:
       - db
     environment:
       - TZ=America/Santiago
-    command: ["./wait-for-it.sh", "db:5432", "--", "gunicorn", "--bind", "0.0.0.0:8000", "crud_asistencial.wsgi:application"]
+    command: ["bash", "/wait-for-it.sh", "db:5432", "--", "gunicorn", "--bind", "0.0.0.0:8000", "crud_asistencial.wsgi:application"]
 
   db:
     image: postgres:17
@@ -23,7 +24,7 @@ services:
     environment:
       POSTGRES_USER: ${DB_USERNAME}   # Usando variable DB_USERNAME
       POSTGRES_PASSWORD: ${DB_PASSWORD}   # Usando variable DB_PASSWORD
-      POSTGRES_DB: ${DB_NAME}  # Usando variable DB_NAME
+      POSTGRES_DB: ${DB_NAME}         # Usando variable DB_NAME
     ports:
       - "5433:5432"
     volumes:
